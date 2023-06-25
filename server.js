@@ -1,13 +1,13 @@
 // Import Express.js
-import express from 'express';
+const express = require('express');
 
 // Import built-in Node.js package 'path' to resolve path of files that are located on the server
-import path from 'path';
+const path = require('path');
 
-import uniqueId from 'uniqueid';
+const uniqueId = require('uniqueid');
 
 
-import fs from 'fs';
+const fs = require('fs');
 
 // Initialize an instance of Express.js
 const app = express();
@@ -42,9 +42,9 @@ app.get('/api/notes', (req, res) => {
 
 
 // listen() method is responsible for listening for incoming connections on the specified port 
-app.listen(PORT, () =>
+app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
-);
+});
 
 
 
