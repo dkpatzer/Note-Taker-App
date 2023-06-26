@@ -8,7 +8,7 @@ import { dirname } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 //  Import built-in Node.js package 'fs' to read/write files to the server
 import fs from 'fs';
-
+import path from 'path';
 // Initialize an instance of Express.js
 const app = express();
 
@@ -43,6 +43,7 @@ app.get('/api/notes', (req, res) => {
 
     try {
       const notes = JSON.parse(data);
+      console.log('Parsed JSON data:', notes); // Log the parsed JSON data
       res.json(notes);
     } catch (error) {
       console.error(error);
