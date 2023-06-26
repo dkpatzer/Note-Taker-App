@@ -103,13 +103,6 @@ const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
-  
-  noteTitle.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-      noteText.focus();
-    }
-  });
-
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
@@ -125,6 +118,12 @@ const handleRenderSaveBtn = () => {
     show(saveNoteBtn);
   }
 };
+
+noteTitle.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    noteText.focus();
+  }
+});
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
