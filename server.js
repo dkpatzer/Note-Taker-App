@@ -5,7 +5,7 @@ import express from 'express';
 import path from 'path';
 // import uniqueId
 
-import uniqueId from 'uniqueid';
+import { v4 as uuidv4 } from 'uuid';
 //  Import built-in Node.js package 'fs' to read/write files to the server
 import fs from 'fs';
 
@@ -16,30 +16,71 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.static('public'));
+app.use(express.json());
 
-//this is  post endpoint adds a new note
-app.post('/api/notes', (req, res) => {
-  const newNote = { notesid: uniqueId(), note: req.body };
 
-  fs.writeFile(path.resolve(__dirname, 'db', 'db.json'), JSON.stringify(newNote), function (err) {
-    if (err) throw err;
-    res.send('Successful send');
-  });
+// HTML Routes
+app.get('/notes', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'notes.html'));
 });
 
-//this gets all of the notes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+// API Routes
 app.get('/api/notes', (req, res) => {
-  fs.readFile(path.resolve(__dirname, 'db', 'db.json'), function (err, data) {
-    if (err) throw err;
-    res.send(data);
+  fs.readFile(path.resolve(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+
+    try {
+      const notes = JSON.parse(data);
+      res.json(notes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   });
 });
 
-// listen() method is responsible for listening for incoming connections on the specified port 
+app.post('/api/notes', (req, res) => {
+  const newNote = {
+    id: uuidv4(),
+    title: req.body.title,
+    text: req.body.text
+  };
+
+  fs.readFile(path.resolve(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+
+    try {
+      const notes = JSON.parse(data);
+      notes.push(newNote);
+
+      fs.writeFile(path.resolve(__dirname, 'db', 'db.json'), JSON.stringify(notes), (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal server error' });
+          return;
+        }
+
+        res.json(newNote);
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
