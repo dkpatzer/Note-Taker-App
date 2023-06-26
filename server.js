@@ -1,13 +1,10 @@
 // Import Express.js
-const express = require('express');
+import express from 'express';
 
 // Import built-in Node.js package 'path' to resolve path of files that are located on the server
-const path = require('path');
-
-const uniqueId = require('uniqueid');
-
-
-const fs = require('fs');
+import path from 'path';
+import uniqueId from 'uniqueid';
+import fs from 'fs';
 
 // Initialize an instance of Express.js
 const app = express();
