@@ -1,4 +1,4 @@
-e-Taker-App
+# Note-Taker-App
 
 ## Description
 
