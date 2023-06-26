@@ -33,6 +33,18 @@ An instance of the Express.js application is created and saved to the app variab
 Building this app was useful in gaining experience and understanding of Express.js and building functional routes between the front end and back end. I have a better understanding of the GET, POST, and DELETE HTTP methods. I gained more experience with Postman testing my routes. I learned about using eventhandlers to work with the keyboard in my app.  I also gained experience in deploying an application to Heroku.
 
 
+## Credits and Sources
+The Work Day Scheduler was developed by David Patzer as part of the NU coding boot camp. I obtained information from many sources to help in building this app. The sources are listed below.
+
+. The Express.js site was invaluable in understanding Express.js and building functional routes between the front end and back end. https://expressjs.com/
+. The MDN Web Docs site was invaluable in understanding the GET, POST, and DELETE HTTP methods. https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+. The Postman site was invaluable in testing my routes. https://www.postman.com/
+. The W3 Schools site was invaluable in understanding how to use eventhandlers to work with the keyboard in my app. https://www.w3schools.com/jsref/event_onkeypress.asp
+. The Heroku site was invaluable in understanding how to deploy an application to Heroku. https://devcenter.heroku.com/articles/getting-started-with-nodejs
+.The freecodecamp site The Express + Node.js Handbook – Learn the Express JavaScript Framework for Beginners [2022 Edition] was useful in understanding Express.js and building functional routes between the front end and back end. https://www.freecodecamp.org/news/the-express-handbook/
+. I also used ChatGPT to check my text/code. https://chat.openai.com/
+
+
 
 
 
