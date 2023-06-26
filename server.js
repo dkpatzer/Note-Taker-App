@@ -88,6 +88,47 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
+app.delete('/api/notes/:id', (req, res) => {
+  const noteId = req.params.id;
+
+  fs.readFile(path.resolve(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+
+    try {
+      const notes = JSON.parse(data);
+
+      // Find the index of the note with the given ID
+      const noteIndex = notes.findIndex((note) => note.id === noteId);
+
+      // If the note is found, remove it from the notes array
+      if (noteIndex !== -1) {
+        notes.splice(noteIndex, 1);
+
+        // Write the updated notes array to the db.json file
+        fs.writeFile(path.resolve(__dirname, 'db', 'db.json'), JSON.stringify(notes), (err) => {
+          if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal server error' });
+            return;
+          }
+
+          res.sendStatus(204); // Send a success response with no content
+        });
+      } else {
+        res.status(404).json({ error: 'Note not found' }); // Send a 404 response if the note is not found
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+});
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
