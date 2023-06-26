@@ -23,12 +23,12 @@ First, the Express.js library is imported which allows the creation of a web ser
 An instance of the Express.js application is created and saved to the app variable. Next, the port number is set to 3001. The fileURLToPath and dirname functions get the current file's path and its directory path. The middleware functions These lines configure the Express.js application to serve static files from the `public` directory and parse JSON data in incoming requests. The API routes are set up for the GET, POST, and DELETE methods. The GET method reads the db.json file and returns all saved notes as JSON. The POST method receives a new note to save on the request body, adds it to the db.json file, and then returns the new note to the client. The DELETE method receives a query parameter containing the id of a note to delete. It reads all notes from the db.json file, removes the note with the given id property, and then rewrites the notes to the db.json file. Next, the routes for the HTML files are created. These routes are used to handle client-side routing in a single-page application.  First, a GET request is made to the api/notes endpoint and the callback function is executed. The POST request is made to the api/notes endpoint and the callback function is executed. The DELETE request is made to the api/notes/:id endpoint and the callback function is executed. The GET request is made to the /notes endpoint and the callback function is executed. The GET request is made to the * endpoint and the callback function is executed. Finally, the server is started and listens for requests on the port number.
 
 
-## Screenshots
+## Link to Screencastify Video
 
-![Screenshot (161)](public/assets/images/Screenshot%20(161).png)
-![Screenshot (162)](public/assets/images/Screenshot%20(162).png)
-![Screenshot (163)](public/assets/images/Screenshot%20(163).png)
-![Screenshot (164)](public/assets/images/Screenshot%20(164).png)
+[Watch the Screencastify Video](https://drive.google.com/file/d/1_KEQ7nPAPrRvM-PTRNJ2krO08GDyh2mb/view?pli=1)
+
+
+
 
 Building this app was useful in gaining experience and understanding of Express.js and building functional routes between the front end and back end. I have a better understanding of the GET, POST, and DELETE HTTP methods. I gained more experience with Postman testing my routes. I learned about using eventhandlers to work with the keyboard in my app.  I also gained experience in deploying an application to Heroku.
 
