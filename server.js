@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 //  Import built-in Node.js package 'fs' to read/write files to the server
 import fs from 'fs';
 import path from 'path';
+
 // Initialize an instance of Express.js
 const app = express();
 
@@ -20,17 +21,9 @@ const __filename = fileURLToPath(import.meta.url);
 // Get the directory path
 const __dirname = dirname(__filename);
 
-app.use(express.static('public'));
+// Serve static files
+app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
-
-// HTML Routes
-app.get('/notes', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'notes.html'));
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
 
 // API Routes
 app.get('/api/notes', (req, res) => {
@@ -86,7 +79,18 @@ app.post('/api/notes', (req, res) => {
   });
 });
 
+// HTML Routes
+app.get('/notes', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'notes.html'));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
